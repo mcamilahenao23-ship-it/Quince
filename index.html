@@ -1,1 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una invitación especial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fondo: #edf2fa;
+  --azul: #d5e0f0;
+  --azul-medio: #9db1cd;
+  --azul-oscuro: #203858;
+  --texto: #526c91;
+  --marfil: #faf8f3;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--azul-oscuro);
+  background: var(--fondo);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+button, input, select { font: inherit; }
+#petalos {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+.petalo {
+  position: absolute;
+  top: -35px;
+  width: 13px;
+  height: 20px;
+  border-radius: 80% 10% 80% 10%;
+  background: linear-gradient(135deg, #fff, #c7d8ee);
+  opacity: .72;
+  animation: caer linear infinite;
+}
+@keyframes caer {
+  0% { transform: translate3d(0,-10vh,0) rotate(0deg); }
+  50% { transform: translate3d(55px,50vh,0) rotate(180deg); }
+  100% { transform: translate3d(-30px,110vh,0) rotate(360deg); }
+}
+.portada {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at top, #fff 0%, transparent 55%),
+    linear-gradient(145deg, #e8eef7, #d5e0f0 55%, #edf2fa);
+  position: relative;
+}
+.marco {
+  width: min(100%, 650px);
+  border: 1px solid #9db1cd;
+  outline: 1px solid #9db1cd;
+  outline-offset: 7px;
+  padding: clamp(30px, 7vw, 70px) 22px;
+  position: relative;
+  background: #faf8f350;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  font: 10px Montserrat, sans-serif;
+  color: var(--texto);
+}
+.script {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+}
+.portada h1 {
+  font-size: clamp(50px, 12vw, 94px);
+  font-weight: 400;
+  line-height: 1;
+  margin: 22px 0;
+}
+.portada p {
+  font-size: 22px;
+  line-height: 1.5;
+}
+.sello {
+  display: inline-grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--azul-medio);
+  border-radius: 50%;
+  font-size: 24px;
+  margin: 14px;
+  color: var(--texto);
+}
+.boton {
+  display: inline-block;
+  padding: 13px 25px;
+  border: 1px solid var(--azul-oscuro);
+  color: var(--azul-oscuro);
+  background: transparent;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font: 10px Montserrat, sans-serif;
+  cursor: pointer;
+  transition: .3s;
+}
+.boton:hover {
+  background: var(--azul-oscuro);
+  color: white;
+}
+.seccion {
+  padding: 95px 22px;
+  text-align: center;
+  position: relative;
+}
+.seccion:nth-of-type(even) { background: var(--marfil); }
+.contenido { max-width: 720px; margin: auto; }
+.numero {
+  color: var(--azul-medio);
+  font-size: 18px;
+  letter-spacing: .2em;
+}
+h2 {
+  font-size: clamp(38px, 8vw, 64px);
+  font-weight: 400;
+  margin: 15px 0 25px;
+  line-height: 1.05;
+}
+p {
+  font-size: 21px;
+  line-height: 1.65;
+}
+.separador {
+  width: 70px;
+  height: 1px;
+  background: var(--azul-medio);
+  margin: 28px auto;
+}
+.cita {
+  font-size: clamp(27px, 6vw, 40px);
+  font-style: italic;
+  line-height: 1.35;
+}
+.detalles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 35px;
+}
+.detalle {
+  padding: 25px 12px;
+  border: 1px solid #d5e0f0;
+  background: #ffffff75;
+}
+.detalle .icono {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 12px;
+}
+.detalle h3 {
+  font-size: 25px;
+  font-weight: 400;
+  margin: 8px;
+}
+.detalle p { font-size: 17px; margin: 5px 0; }
+.contador {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px 0;
+}
+.unidad {
+  min-width: 76px;
+  padding: 15px 10px;
+  border: 1px solid var(--azul-medio);
+}
+.unidad strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+}
+.unidad span {
+  font: 9px Montserrat, sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+form {
+  max-width: 440px;
+  margin: 30px auto 0;
+  text-align: left;
+}
+label {
+  display: block;
+  margin: 17px 0 7px;
+  font: 11px Montserrat, sans-serif;
+  letter-spacing: .04em;
+}
+input, select {
+  width: 100%;
+  border: 1px solid var(--azul-medio);
+  background: #fff;
+  padding: 13px;
+  color: var(--azul-oscuro);
+  border-radius: 0;
+}
+form .boton { width: 100%; margin-top: 24px; }
+.nota { font: 10px Montserrat, sans-serif; line-height: 1.7; color: var(--texto); }
+footer {
+  text-align: center;
+  padding: 45px 20px;
+  background: var(--azul-oscuro);
+  color: var(--marfil);
+}
+footer p { font-size: 17px; }
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.revelar.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+<div id="petalos" aria-hidden="true"></div>
 
+<header class="portada">
+  <div class="marco">
+    <div class="eyebrow">Una fecha para recordar</div>
+    <div class="sello">✧</div>
+    <h1 class="script">Una ocasión<br>especial</h1>
+    <p>Hay momentos que merecen celebrarse<br>rodeados de las personas que queremos.</p>
+    <div class="separador"></div>
+    <button class="boton" onclick="document.querySelector('#invitacion').scrollIntoView({behavior:'smooth'})">
+      Abrir invitación
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="seccion" id="invitacion">
+  <div class="contenido revelar">
+    <div class="numero">I · LA INVITACIÓN</div>
+    <h2 class="script">Queremos compartirlo contigo</h2>
+    <div class="separador"></div>
+    <p>Las fechas bonitas se vuelven inolvidables cuando se comparten con quienes hacen especial nuestra vida.</p>
+    <p>Por eso, queremos invitarte a celebrar con nosotros este día tan esperado.</p>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenido revelar">
+    <div class="numero">II · UN DÍA ESPECIAL</div>
+    <p class="cita">“Los recuerdos más bonitos comienzan con un día cualquiera que termina siendo extraordinario”.</p>
+    <div class="separador"></div>
+    <p>Guarda la fecha y prepárate para compartir una celebración llena de cariño, sonrisas y momentos que querrás recordar.</p>
+  </div>
+</section>
+
+<section class="seccion" id="detalles">
+  <div class="contenido revelar">
+    <div class="numero">III · LOS DETALLES</div>
+    <h2 class="script">Nos encontramos pronto</h2>
+    <p>Estos son los detalles para acompañarnos en este día.</p>
+    <div class="detalles">
+      <div class="detalle">
+        <span class="icono">♡</span>
+        <div class="eyebrow">La fecha</div>
+        <h3 id="fechaTexto">Próximamente</h3>
+        <p>Reserva este día</p>
+      </div>
+      <div class="detalle">
+        <span class="icono">⌚</span>
+        <div class="eyebrow">La hora</div>
+        <h3 id="horaTexto">Por confirmar</h3>
+        <p>Te esperamos puntualmente</p>
+      </div>
+      <div class="detalle">
+        <span class="icono">⌖</span>
+        <div class="eyebrow">El lugar</div>
+        <h3 id="lugarTexto">Por confirmar</h3>
+        <p id="direccionTexto">Pronto compartiremos la ubicación</p>
+        <a id="mapaLink" class="boton" href="#" target="_blank" rel="noopener" hidden>Ver mapa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenido revelar">
+    <div class="numero">IV · LA CUENTA REGRESIVA</div>
+    <h2 class="script">Cada vez falta menos</h2>
+    <p>La emoción de esperar también forma parte de los recuerdos.</p>
+    <div class="contador">
+      <div class="unidad"><strong id="dias">--</strong><span>Días</span></div>
+      <div class="unidad"><strong id="horas">--</strong><span>Horas</span></div>
+      <div class="unidad"><strong id="minutos">--</strong><span>Minutos</span></div>
+      <div class="unidad"><strong id="segundos">--</strong><span>Segundos</span></div>
+    </div>
+    <p class="nota" id="mensajeContador">La cuenta regresiva aparecerá cuando confirmemos la fecha.</p>
+  </div>
+</section>
+
+<section class="seccion" id="confirmar">
+  <div class="contenido revelar">
+    <div class="numero">V · NOS ENCANTARÍA CONTAR CONTIGO</div>
+    <h2 class="script">¿Nos acompañas?</h2>
+    <p>Confirma tu asistencia para que podamos preparar todo con mucho cariño.</p>
+    <form id="formulario">
+      <label for="nombre">Nombre completo</label>
+      <input id="nombre" name="nombre" autocomplete="name" required placeholder="Escribe tu nombre">
+
+      <label for="asistencia">¿Podrás acompañarnos?</label>
+      <select id="asistencia" name="asistencia" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Sí asistiré">Sí, allí estaré</option>
+        <option value="No asistiré">Lo siento, no podré asistir</option>
+      </select>
+
+      <div id="grupoCupos">
+        <label for="adultos">Cantidad de adultos (incluyéndote)</label>
+        <select id="adultos" name="adultos">
+          <option value="1">1 adulto</option>
+          <option value="2">2 adultos</option>
+        </select>
+
+        <label for="ninos">Cantidad de niños</label>
+        <select id="ninos" name="ninos">
+          <option value="0">Ninguno</option>
+          <option value="1">1 niño</option>
+          <option value="2">2 niños</option>
+          <option value="3">3 niños</option>
+        </select>
+      </div>
+
+      <button class="boton" type="submit">Enviar confirmación</button>
+      <p class="nota" id="mensajeFormulario">En el siguiente paso conectaremos este formulario para guardar las respuestas y controlar los cupos.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="script" style="font-size:42px">Con cariño</div>
+  <p>Será un día más bonito si estás con nosotros.</p>
+  <div>✧ · ♡ · ✧</div>
+</footer>
+
+<script>
+// Pétalos azul claro
+const contenedorPetalos = document.getElementById('petalos');
+for (let i = 0; i < 24; i++) {
+  const petalo = document.createElement('span');
+  petalo.className = 'petalo';
+  petalo.style.left = Math.random() * 100 + 'vw';
+  petalo.style.animationDuration = (9 + Math.random() * 12) + 's';
+  petalo.style.animationDelay = (-Math.random() * 20) + 's';
+  petalo.style.opacity = (0.25 + Math.random() * 0.5).toString();
+  petalo.style.transform = scale(${0.5 + Math.random()});
+  contenedorPetalos.appendChild(petalo);
+}
+
+// Aparición de las secciones al bajar
+const observador = new IntersectionObserver((entradas) => {
+  entradas.forEach((entrada) => {
+    if (entrada.isIntersecting) {
+      entrada.target.classList.add('visible');
+      observador.unobserve(entrada.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.revelar').forEach((elemento) => observador.observe(elemento));
+
+// Configuración del evento: la completaremos con los datos reales
+const evento = {
+  fecha: '', // Ejemplo: '2027-05-15T16:00:00'
+  fechaVisible: 'Próximamente',
+  hora: 'Por confirmar',
+  lugar: 'Por confirmar',
+  direccion: 'Pronto compartiremos la ubicación',
+  mapa: '' // Pega aquí el enlace de Google Maps
+};
+
+document.getElementById('fechaTexto').textContent = evento.fechaVisible;
+document.getElementById('horaTexto').textContent = evento.hora;
+document.getElementById('lugarTexto').textContent = evento.lugar;
+document.getElementById('direccionTexto').textContent = evento.direccion;
+
+if (evento.mapa) {
+  const enlace = document.getElementById('mapaLink');
+  enlace.href = evento.mapa;
+  enlace.hidden = false;
+}
+
+function actualizarCuentaRegresiva() {
+  if (!evento.fecha) return;
+  const diferencia = new Date(evento.fecha).getTime() - Date.now();
+  if (diferencia <= 0) {
+    document.getElementById('mensajeContador').textContent = '¡Llegó el día de celebrar!';
+    return;
+  }
+  document.getElementById('dias').textContent = Math.floor(diferencia / 86400000);
+  document.getElementById('horas').textContent = Math.floor(diferencia / 3600000) % 24;
+  document.getElementById('minutos').textContent = Math.floor(diferencia / 60000) % 60;
+  document.getElementById('segundos').textContent = Math.floor(diferencia / 1000) % 60;
+  document.getElementById('mensajeContador').textContent = 'La cuenta regresiva ya está en marcha.';
+}
+actualizarCuentaRegresiva();
+setInterval(actualizarCuentaRegresiva, 1000);
+
+// Mostrar u ocultar cupos si la persona no asistirá.
+// El envío real se conectará con la base de datos en el siguiente paso.
+const asistencia = document.getElementById('asistencia');
+asistencia.addEventListener('change', () => {
+  document.getElementById('grupoCupos').hidden = asistencia.value !== 'Sí asistiré';
+});
+
+document.getElementById('formulario').addEventListener('submit', (e) => {
+  e.preventDefault();
+  document.getElementById('mensajeFormulario').textContent =
+    'El diseño está listo, pero aún falta conectar el formulario para registrar tu respuesta. Lo haremos en el siguiente paso.';
+});
+</script>
+</body>
+</html>
